@@ -1,0 +1,11 @@
+= gh-action-usage
+
+Usage count of an GitHub action
+
+[code,shell]
+====
+$ gh action-usage rlespinasse/github-slug-action
+1952
+====
+
+Install it using `gh extension install rlespinasse/gh-action-usage`
