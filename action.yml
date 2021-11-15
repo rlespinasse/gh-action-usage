@@ -1,0 +1,26 @@
+name: "Action Usage"
+description: "Github Action to run GitHub Cli extension 'gh-action-usage'"
+author: "Romain Lespinasse"
+inputs:
+  repository:
+    description: "Name of the GitHub Action repository"
+    required: true
+  github-token:
+    description: "GitHub Token as provided by secrets"
+    default: ${{ github.token }}
+    required: true
+outputs:
+  usage-count:
+    description: "Count of action usage"
+    value: ${{ steps.action-usage.outputs.usage-count }}
+branding:
+  icon: "activity"
+  color: "orange"
+runs:
+  using: "composite"
+  steps:
+    - id: action-usage
+      run: $GITHUB_ACTION_PATH/gh-action-usage "${{ inputs.repository }}"
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}

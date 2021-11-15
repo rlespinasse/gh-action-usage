@@ -11,4 +11,10 @@ fi
 
 repo="${1}"
 
-gh api -X GET search/code -f q="$repo path:.github/workflows/ language:YAML fork:true" --jq '.total_count' | cat
+usage_count=$(gh api -X GET search/code -f q="${repo} path:.github/workflows/ language:YAML fork:true" --jq '.total_count')
+
+if [ "$CI" = true ]; then
+    echo "::set-output name=usage-count::${usage_count}"
+else
+    echo "${usage_count}"
+fi

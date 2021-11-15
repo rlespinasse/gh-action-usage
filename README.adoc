@@ -9,3 +9,22 @@ $ gh action-usage rlespinasse/github-slug-action
 ----
 
 Install it using `gh extension install rlespinasse/gh-action-usage`
+
+[NOTE]
+====
+This can also be used as GitHub action
+
+[code,shell]
+----
+jobs:
+  usage:
+    runs-on: ubuntu-latest
+    steps:
+      - id: get-usage
+        uses: ./
+        with:
+          repository: ${{ github.repository }}
+      - run: echo "This repository is used ${{ steps.get-usage.outputs.usage-count }} times"
+        shell: bash
+----
+====
