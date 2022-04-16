@@ -1,7 +1,7 @@
 name: gh-action-usage
 on: [push]
 jobs:
-  gh-action-usage-on-os:
+  os-testing:
     strategy:
       fail-fast: false
       matrix:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - id: test
         uses: ./
         with:
@@ -17,14 +17,14 @@ jobs:
       - run: echo "This repository is used ${{ steps.test.outputs.usage-count }} times"
         shell: bash
 
-  gh-action-usage-release:
+  release:
     runs-on: ubuntu-latest
-    needs: gh-action-usage-on-os
+    needs: os-testing
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Release
       - name: Release that
-        uses: rlespinasse/release-that@v1.x
+        uses: rlespinasse/release-that@v1
     
