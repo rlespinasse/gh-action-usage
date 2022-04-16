@@ -1,5 +1,7 @@
 = gh-action-usage
 
+> To have better count, use the dependency graph directly in your repository, like https://github.com/rlespinasse/github-slug-action/network/dependents
+
 Usage count of an GitHub action
 
 [code,shell]
